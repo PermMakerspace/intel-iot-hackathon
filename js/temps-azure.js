@@ -39,19 +39,3 @@ var printTemp = function() {
 
 printTemp();
 });
-
-process.on("SIGINT", function() {
-
-var dataQuery = azureTable.Query.create("PartitionKey", "==", t.name());
-
-client.queryEntities("tem", {
-	query: dataQuery,
-	onlyFields: ['sensor_id', 'timestamp', 'value']
-}, function(err, result) {
-	if (err) console.error(err);
-	else
-		console.log(result);
-	process.exit(0);
-});
-
-});
